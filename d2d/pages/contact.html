@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="STUB_CONTACT_META_DESCRIPTION">
+    <meta name="keywords" content="STUB_CONTACT_META_KEYWORDS">
+    <meta name="author" content="STUB_COMPANY_NAME">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="STUB_CONTACT_OG_TITLE">
+    <meta property="og:description" content="STUB_CONTACT_OG_DESCRIPTION">
+    <meta property="og:image" content="STUB_OG_IMAGE_URL">
+    <meta property="og:type" content="website">
+
+    <title>STUB_CONTACT_PAGE_TITLE | STUB_COMPANY_NAME</title>
+
+    <!-- Bootstrap 5.3.2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+        }
+
+        [data-bs-theme="dark"] {
+            --bs-body-bg: #212529;
+            --bs-body-color: #dee2e6;
+        }
+
+        .navbar {
+            transition: all 0.3s ease;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0a58ca 100%);
+            color: white;
+            padding: 100px 0 60px;
+            margin-bottom: 60px;
+        }
+
+        .contact-section {
+            padding: 60px 0;
+        }
+
+        .contact-card {
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            background: white;
+            height: 100%;
+        }
+
+        [data-bs-theme="dark"] .contact-card {
+            background: #2b3035;
+        }
+
+        .info-box {
+            background: var(--light-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        [data-bs-theme="dark"] .info-box {
+            background: #1a1d20;
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), #0a58ca);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control, .form-select {
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            font-size: 1.25rem;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        [data-bs-theme="dark"] .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .required-indicator {
+            color: #dc3545;
+        }
+
+        .invalid-feedback {
+            display: none;
+            font-size: 0.875rem;
+            color: #dc3545;
+            margin-top: 0.25rem;
+        }
+
+        .was-validated .form-control:invalid ~ .invalid-feedback,
+        .was-validated .form-select:invalid ~ .invalid-feedback {
+            display: block;
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 400px;
+            background: var(--light-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        [data-bs-theme="dark"] .map-container {
+            background: #1a1d20;
+        }
+
+        .hours-table {
+            margin-top: 1rem;
+        }
+
+        .hours-table .row {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        [data-bs-theme="dark"] .hours-table .row {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .hours-table .row:last-child {
+            border-bottom: none;
+        }
+
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        footer a {
+            color: #dee2e6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0 0.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .btn-lg-custom {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            margin: 0 0.35rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: #0a58ca;
+            transform: translateY(-3px);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" aria-label="Main navigation">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/index.html">
+                <i class="bi bi-truck"></i> STUB_COMPANY_NAME
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html">STUB_NAV_HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/services.html">STUB_NAV_SERVICES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/booking.html">STUB_NAV_BOOKING</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/pages/contact.html">STUB_NAV_CONTACT</a>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link theme-toggle" id="themeToggle" role="button" tabindex="0" aria-label="Toggle theme">
+                            <i class="bi bi-sun-fill"></i>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container text-center">
+            <h1 class="display-3 fw-bold mb-3">STUB_CONTACT_HEADER_TITLE</h1>
+            <p class="lead">STUB_CONTACT_HEADER_SUBTITLE</p>
+        </div>
+    </header>
+
+    <!-- Contact Info Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="info-box text-center">
+                        <div class="info-icon mx-auto">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <h3 class="h5 mb-3">STUB_ADDRESS_BOX_TITLE</h3>
+                        <p class="mb-0">STUB_ADDRESS</p>
+                        <p class="text-muted small mt-2">STUB_ADDRESS_ADDITIONAL_INFO</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-box text-center">
+                        <div class="info-icon mx-auto">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+                        <h3 class="h5 mb-3">STUB_PHONE_BOX_TITLE</h3>
+                        <p class="mb-1"><a href="tel:STUB_PHONE_NUMBER" class="text-decoration-none">STUB_PHONE_NUMBER</a></p>
+                        <p class="mb-0"><a href="tel:STUB_ALT_PHONE_NUMBER" class="text-decoration-none">STUB_ALT_PHONE_NUMBER</a></p>
+                        <p class="text-muted small mt-2">STUB_PHONE_HOURS_INFO</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-box text-center">
+                        <div class="info-icon mx-auto">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+                        <h3 class="h5 mb-3">STUB_EMAIL_BOX_TITLE</h3>
+                        <p class="mb-1"><a href="mailto:STUB_EMAIL" class="text-decoration-none">STUB_EMAIL</a></p>
+                        <p class="mb-0"><a href="mailto:STUB_SUPPORT_EMAIL" class="text-decoration-none">STUB_SUPPORT_EMAIL</a></p>
+                        <p class="text-muted small mt-2">STUB_EMAIL_RESPONSE_TIME</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form and Additional Info -->
+            <div class="row g-5">
+                <!-- Contact Form -->
+                <div class="col-lg-8">
+                    <div class="contact-card">
+                        <h2 class="h3 mb-4">STUB_CONTACT_FORM_TITLE</h2>
+                        <p class="text-muted mb-4">STUB_CONTACT_FORM_SUBTITLE</p>
+
+                        <form id="contactForm" novalidate>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label">STUB_NAME_LABEL <span class="required-indicator">*</span></label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                    <div class="invalid-feedback">STUB_NAME_ERROR</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">STUB_EMAIL_LABEL <span class="required-indicator">*</span></label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                    <div class="invalid-feedback">STUB_EMAIL_ERROR</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">STUB_PHONE_LABEL</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="subject" class="form-label">STUB_SUBJECT_LABEL <span class="required-indicator">*</span></label>
+                                    <select class="form-select" id="subject" name="subject" required>
+                                        <option value="">STUB_SELECT_SUBJECT_PLACEHOLDER</option>
+                                        <option value="general">STUB_SUBJECT_GENERAL</option>
+                                        <option value="quote">STUB_SUBJECT_QUOTE</option>
+                                        <option value="support">STUB_SUBJECT_SUPPORT</option>
+                                        <option value="feedback">STUB_SUBJECT_FEEDBACK</option>
+                                        <option value="other">STUB_SUBJECT_OTHER</option>
+                                    </select>
+                                    <div class="invalid-feedback">STUB_SUBJECT_ERROR</div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="message" class="form-label">STUB_MESSAGE_LABEL <span class="required-indicator">*</span></label>
+                                    <textarea class="form-control" id="message" name="message" rows="6" required placeholder="STUB_MESSAGE_PLACEHOLDER"></textarea>
+                                    <div class="invalid-feedback">STUB_MESSAGE_ERROR</div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="newsletter">
+                                        <label class="form-check-label" for="newsletter">
+                                            STUB_NEWSLETTER_CHECKBOX_LABEL
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary btn-lg-custom">STUB_SEND_MESSAGE_BUTTON</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Business Hours and Social -->
+                <div class="col-lg-4">
+                    <div class="contact-card mb-4">
+                        <h3 class="h5 mb-3">STUB_BUSINESS_HOURS_TITLE</h3>
+                        <div class="hours-table">
+                            <div class="row">
+                                <div class="col-6 fw-semibold">STUB_MONDAY_LABEL</div>
+                                <div class="col-6 text-end">STUB_MONDAY_HOURS</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 fw-semibold">STUB_TUESDAY_LABEL</div>
+                                <div class="col-6 text-end">STUB_TUESDAY_HOURS</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 fw-semibold">STUB_WEDNESDAY_LABEL</div>
+                                <div class="col-6 text-end">STUB_WEDNESDAY_HOURS</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 fw-semibold">STUB_THURSDAY_LABEL</div>
+                                <div class="col-6 text-end">STUB_THURSDAY_HOURS</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 fw-semibold">STUB_FRIDAY_LABEL</div>
+                                <div class="col-6 text-end">STUB_FRIDAY_HOURS</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 fw-semibold">STUB_SATURDAY_LABEL</div>
+                                <div class="col-6 text-end">STUB_SATURDAY_HOURS</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 fw-semibold">STUB_SUNDAY_LABEL</div>
+                                <div class="col-6 text-end">STUB_SUNDAY_HOURS</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <h3 class="h5 mb-3">STUB_CONNECT_WITH_US_TITLE</h3>
+                        <p class="text-muted mb-3">STUB_SOCIAL_MEDIA_TEXT</p>
+                        <div class="text-center">
+                            <a href="STUB_FACEBOOK_URL" class="social-link" aria-label="Facebook">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="STUB_TWITTER_URL" class="social-link" aria-label="Twitter">
+                                <i class="bi bi-twitter"></i>
+                            </a>
+                            <a href="STUB_INSTAGRAM_URL" class="social-link" aria-label="Instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="STUB_LINKEDIN_URL" class="social-link" aria-label="LinkedIn">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Placeholder -->
+            <div class="map-container">
+                <div class="text-center">
+                    <i class="bi bi-geo-alt-fill text-primary" style="font-size: 4rem;"></i>
+                    <p class="h5 mt-3">STUB_MAP_PLACEHOLDER_TEXT</p>
+                    <p class="text-muted">STUB_MAP_ADDRESS</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bold mb-3">STUB_COMPANY_NAME</h5>
+                    <p class="mb-3">STUB_FOOTER_COMPANY_DESCRIPTION</p>
+                    <div class="social-icons">
+                        <a href="STUB_FACEBOOK_URL" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="STUB_TWITTER_URL" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="STUB_INSTAGRAM_URL" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="STUB_LINKEDIN_URL" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="fw-bold mb-3">STUB_FOOTER_QUICK_LINKS_TITLE</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/index.html">STUB_NAV_HOME</a></li>
+                        <li class="mb-2"><a href="/pages/services.html">STUB_NAV_SERVICES</a></li>
+                        <li class="mb-2"><a href="/pages/booking.html">STUB_NAV_BOOKING</a></li>
+                        <li class="mb-2"><a href="/pages/contact.html">STUB_NAV_CONTACT</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold mb-3">STUB_FOOTER_SERVICES_TITLE</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/pages/services.html#service1">STUB_SERVICE_1_NAME</a></li>
+                        <li class="mb-2"><a href="/pages/services.html#service2">STUB_SERVICE_2_NAME</a></li>
+                        <li class="mb-2"><a href="/pages/services.html#service3">STUB_SERVICE_3_NAME</a></li>
+                        <li class="mb-2"><a href="/pages/services.html#service4">STUB_SERVICE_4_NAME</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold mb-3">STUB_FOOTER_CONTACT_TITLE</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>STUB_ADDRESS</li>
+                        <li class="mb-2"><i class="bi bi-telephone me-2"></i><a href="tel:STUB_PHONE_NUMBER">STUB_PHONE_NUMBER</a></li>
+                        <li class="mb-2"><i class="bi bi-envelope me-2"></i><a href="mailto:STUB_EMAIL">STUB_EMAIL</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="text-center">
+                <p class="mb-0">STUB_COPYRIGHT_TEXT</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="successModalLabel">
+                        <i class="bi bi-check-circle me-2"></i>STUB_SUCCESS_MODAL_TITLE
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center py-4">
+                    <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                    <p class="lead mt-3">STUB_CONTACT_SUCCESS_MESSAGE</p>
+                    <p class="text-muted">STUB_CONTACT_SUCCESS_SUBTEXT</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">STUB_CLOSE_BUTTON_TEXT</button>
+                    <a href="/index.html" class="btn btn-primary">STUB_GO_HOME_BUTTON_TEXT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5.3.2 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Form Validation and Functionality Script -->
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const themeIcon = themeToggle.querySelector('i');
+
+        // Load saved theme or default to light
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-bs-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        function updateThemeIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.classList.remove('bi-sun-fill');
+                themeIcon.classList.add('bi-moon-fill');
+            } else {
+                themeIcon.classList.remove('bi-moon-fill');
+                themeIcon.classList.add('bi-sun-fill');
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        // Keyboard accessibility for theme toggle
+        themeToggle.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                themeToggle.click();
+            }
+        });
+
+        // Contact Form Functionality
+        const contactForm = document.getElementById('contactForm');
+        const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (contactForm.checkValidity()) {
+                // Collect form data
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    subject: document.getElementById('subject').value,
+                    message: document.getElementById('message').value,
+                    newsletter: document.getElementById('newsletter').checked,
+                    timestamp: new Date().toISOString()
+                };
+
+                // Save to localStorage (demo purposes)
+                const contacts = JSON.parse(localStorage.getItem('contacts') || '[]');
+                contacts.push(formData);
+                localStorage.setItem('contacts', JSON.stringify(contacts));
+
+                // Show success modal
+                successModal.show();
+
+                // Reset form
+                contactForm.reset();
+                contactForm.classList.remove('was-validated');
+            }
+
+            contactForm.classList.add('was-validated');
+        });
+    </script>
+</body>
+</html>
