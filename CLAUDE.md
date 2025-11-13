@@ -40,8 +40,45 @@ This repository contains a static commercial website built with **AppKit Mobile*
 
 ## Architecture & Design Principles
 
+### MANDATORY: AppKit-Only Policy
+
+**CRITICAL RULE: ZERO custom components or CSS/JS allowed.**
+
+This project uses AppKit Mobile - a premium, professionally maintained framework. We invested significantly in this framework to ensure:
+- Bug-free, tested components
+- Easy upgrades by simply updating AppKit files
+- No maintenance nightmare from custom code
+- Long-term sustainability
+
+### The AppKit-Only Commandments:
+
+1. **NEVER create custom CSS classes or styles**
+   - AppKit provides complete theming through color packs and CSS variables
+   - All layout, spacing, typography is built-in
+   - Custom CSS = maintenance debt and upgrade blockers
+
+2. **NEVER write custom JavaScript for UI features**
+   - AppKit includes programmatic APIs for modals, toasts, action sheets
+   - Built-in components: carousels, accordions, tabs, forms
+   - Theme toggle, navigation, PWA features all included
+
+3. **NEVER duplicate AppKit functionality**
+   - If AppKit has it, use it - don't rebuild it
+   - Reference `/code/index-components.html` for ALL available components
+
+4. **NEVER add CSS frameworks or libraries**
+   - No additional Bootstrap files
+   - No Tailwind, no custom utility classes
+   - AppKit is complete - nothing else needed
+
+5. **The ONLY allowed customizations:**
+   - Content text and images
+   - AppKit color scheme variables (via AppKit's theming system)
+   - Google Fonts selection (AppKit supported)
+   - Logo and brand assets
+
 ### Component-First Approach
-**Always use AppKit Mobile components** - never create custom components when AppKit equivalents exist. Reference the component library in `/code/index-components.html` for all UI elements.
+Reference the component library in `/code/index-components.html` for ALL UI elements. Every component you need already exists in AppKit.
 
 ### Key AppKit Components
 - **Layout:** Grid system, Cards, Tabs, Accordions
@@ -76,9 +113,23 @@ Since this is a fully static site with no backend:
 
 ### File Organization
 - All pages are standalone HTML files in `/pages/` directory
-- Custom CSS goes in `/assets/css/` - keep AppKit core files separate
-- Custom JavaScript in `/assets/js/` for interactions and client-side logic
+- **NO custom CSS files allowed** - use AppKit's theming system only
+- **NO custom JavaScript files allowed** - use AppKit's programmatic APIs only
 - Images and media in `/assets/images/`
+- `/code/` directory contains AppKit framework - NEVER modify these files
+- Content-only changes through data attributes and AppKit classes
+
+### The `/assets/` Directory Rules:
+```
+/assets/
+  /images/          # ✅ ALLOWED: Logo, photos, icons, brand assets
+  /css/             # ❌ FORBIDDEN: No custom CSS files
+  /js/              # ❌ FORBIDDEN: No custom JavaScript files
+```
+
+**If you need styling:** Use AppKit's built-in classes and color variables
+**If you need interactivity:** Use AppKit's data attributes and programmatic APIs
+**If AppKit doesn't have it:** You probably don't need it for a static site
 
 ### HTML Structure
 Each page should include:
@@ -99,10 +150,12 @@ Each page should include:
   <meta property="og:description" content="Page description">
   <meta property="og:image" content="/assets/images/social-share.jpg">
 
-  <!-- AppKit CSS -->
-  <link rel="stylesheet" href="/code/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/code/css/appkit.min.css">
-  <link rel="stylesheet" href="/assets/css/custom.css">
+  <!-- AppKit CSS - ONLY AppKit, NO custom CSS -->
+  <link rel="stylesheet" href="/code/styles/bootstrap.css">
+  <link rel="stylesheet" href="/code/styles/style.css">
+  <link rel="stylesheet" href="/code/fonts/css/fontawesome-all.min.css">
+  <!-- Google Fonts ONLY (optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- PWA Manifest -->
   <link rel="manifest" href="/manifest.json">
@@ -112,9 +165,10 @@ Each page should include:
   <!-- Page Content -->
   <!-- AppKit Footer -->
 
-  <!-- AppKit JavaScript -->
-  <script src="/code/js/appkit.min.js"></script>
-  <script src="/assets/js/custom.js"></script>
+  <!-- AppKit JavaScript - ONLY AppKit, NO custom JS -->
+  <script src="/code/scripts/bootstrap.min.js"></script>
+  <script src="/code/scripts/custom.js"></script>
+  <!-- AppKit's custom.js handles ALL interactions - no additional files needed -->
 </body>
 </html>
 ```
